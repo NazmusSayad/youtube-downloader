@@ -7,9 +7,23 @@ export default middlewareStack(async (req, res, next) => {
   }
 
   const videosInfoPromise = req.body.list.map((url) => {
-    return ydl(url, { dumpSingleJson: true })
+    return ydl(url, {
+      dumpSingleJson: true,
+      noCheckCertificates: true,
+      noWarnings: true,
+      preferFreeFormats: true,
+      addHeader: ['referer:youtube.com', 'user-agent:googlebot'],
+    })
   })
 
   const videoInfo = await Promise.all(videosInfoPromise)
-  res.finish({ list: videoInfo })
+  const finalInfo = videoInfo.map((info) => {
+    const filteredFormats = info.formats.filter((format) => {
+      return format.ext !== 'mhtml'
+    })
+
+    return { ...info, formats: filteredFormats }
+  })
+
+  res.finish({ list: finalInfo })
 })

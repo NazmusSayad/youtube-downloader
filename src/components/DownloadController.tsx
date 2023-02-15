@@ -1,20 +1,39 @@
 'use client'
 
 import useActiveState from '@/utils/useActiveState'
+import { memo, useMemo } from 'react'
 import css from './DownloadController.module.scss'
 
-const DownloadController = () => {
-  const [active, isActive, ref] = useActiveState()
+const DownloadController = ({ formats }) => {
+  const [isActive, setIsActive, ref] = useActiveState() as any
+
+  const list = useMemo(() => {
+    const listItems = Object.keys(formats).map((key) => {
+      const formatsNote = formats[key]
+
+      return (
+        <>
+          <h4 key={key}>{key}</h4>
+          {formatsNote.map((str) => (
+            <li key={str}>{str.replace('&', ' FPS:')}</li>
+          ))}
+        </>
+      )
+    })
+
+    return <ul className={css.ul}>{listItems}</ul>
+  }, [formats])
 
   return (
     <div className={css.DownloadController}>
-      <button type="button" className={css.select}>
-        Select
-      </button>
+      <div className={css.select} ref={ref}>
+        <button onClick={() => setIsActive()}>Show</button>
+        {isActive && list}
+      </div>
 
       <button type="button">Download</button>
     </div>
   )
 }
 
-export default DownloadController
+export default memo(DownloadController)

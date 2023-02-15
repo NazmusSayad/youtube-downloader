@@ -16,7 +16,8 @@
     "react-dom": "18.2.0",
     "sass": "^1.58.1",
     "use-react-api": "^1.0.17",
-    "youtube-dl-exec": "^2.2.3"
+    "youtube-dl-exec": "^2.2.3",
+    "ytdl-core": "^4.11.2"
   },
   "devDependencies": {
     "@types/node": "18.13.0",

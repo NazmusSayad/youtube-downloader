@@ -17,7 +17,7 @@ import { ActiveStateProvider } from '@/utils/useActiveState/manageActiveState'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
       <main>
         <ActiveStateProvider>
           <Component {...pageProps} />
