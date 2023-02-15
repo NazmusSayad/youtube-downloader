@@ -1,0 +1,40 @@
+@use '@/styles/core' as *;
+
+.urlInput {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-block: fluid(1rem, 1.25rem);
+
+  button,
+  textarea {
+    padding: 0.4em fluid(1em, 1.5em);
+    font-size: 1.65rem;
+    outline: 0.2rem solid transparent;
+    border-radius: 0.5rem;
+    @include transition('outline', 300ms);
+    background-color: transparent;
+    border: 0.1rem solid lighten($black, 10);
+  }
+
+  textarea {
+    width: 100%;
+    resize: none;
+
+    &:focus {
+      outline-color: $blue;
+    }
+  }
+
+  button {
+    padding-inline: fluid(2em, 2em);
+
+    @include focus-true {
+      outline-color: $blue;
+    }
+
+    @include focus-false {
+      outline-color: transparent;
+    }
+  }
+}

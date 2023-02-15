@@ -3,7 +3,7 @@ const Wrapper = ({
   children,
   ...props
 }: {
-  className?: string
+  className?: any
   children: any
   [i: string]: any
 }) => {
@@ -12,6 +12,10 @@ const Wrapper = ({
       {children}
     </div>
   )
+}
+
+export const RootWrapper: typeof Wrapper = ({ className, ...props }) => {
+  return <Wrapper {...props} className={['rootWrapper', className]} />
 }
 
 export default Wrapper

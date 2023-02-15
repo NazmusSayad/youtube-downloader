@@ -12,13 +12,16 @@ declare global {
 
 import '@/styles/index.scss'
 import Nav from '@/components/Nav'
+import { ActiveStateProvider } from '@/utils/useActiveState/manageActiveState'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <main>
-        <Component {...pageProps} />
+        <ActiveStateProvider>
+          <Component {...pageProps} />
+        </ActiveStateProvider>
       </main>
     </>
   )

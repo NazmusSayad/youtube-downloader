@@ -1,5 +1,11 @@
+@use '../core' as *;
+
 .wrapper {
   width: 100%;
   max-width: 144rem;
   margin-inline: auto;
+}
+
+.rootWrapper {
+  padding-inline: fluid(1rem, 8.5rem);
 }

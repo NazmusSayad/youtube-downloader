@@ -1,0 +1,31 @@
+@use '@/styles/core' as *;
+
+.Item {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  gap: 2rem;
+  padding: fluid(0.5rem, 1rem);
+  border-radius: 0.5rem;
+  background-color: lighten($black, 2);
+  @include transition('background-color');
+
+  &[active] {
+    background-color: lighten($black, 7.5);
+  }
+
+  img {
+    width: 10rem;
+    border-radius: 0.5rem;
+  }
+
+  h4 {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}
