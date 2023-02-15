@@ -1,7 +1,11 @@
 import type { AppProps } from 'next/app'
 import getClassName from 'get-classnames'
 
-window.$cn = getClassName
+try {
+  globalThis.$cn = getClassName
+  global.$cn = getClassName
+  window.$cn = getClassName
+} catch {}
 declare global {
   var $cn: typeof getClassName
 }
