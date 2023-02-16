@@ -12,6 +12,7 @@ const VideoUrlInput = ({ onStart }) => {
   return (
     <div className={css.urlInput}>
       <textarea
+        autoComplete="url"
         value={valuesArray.join('\n')}
         onChange={(e) => setRawValue(e.target.value)}
         rows={valuesArray.length > 5 ? 5 : valuesArray.length || 1}

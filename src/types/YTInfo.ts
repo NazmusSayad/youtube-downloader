@@ -34,6 +34,7 @@ export type YtInfo = {
   id: string
   title: string
   formats: YtFormat[]
+  format_to_download?: YtFormat
   thumbnails: YtThumbnail[]
   description: string
   upload_date: string

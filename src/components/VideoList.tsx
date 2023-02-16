@@ -1,11 +1,17 @@
 import VideoItem from './VideoItem'
 import css from './VideoList.module.scss'
 
-const VideoList = ({ list }) => {
+const VideoList = ({ list, selectedFormat }) => {
   return (
     <div className={css.List}>
       {list.map((info) => {
-        return <VideoItem key={info.id} info={info} />
+        return (
+          <VideoItem
+            selectedFormat={selectedFormat}
+            key={info.id}
+            info={info}
+          />
+        )
       })}
     </div>
   )

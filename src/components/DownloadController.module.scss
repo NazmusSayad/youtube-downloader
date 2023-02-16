@@ -1,11 +1,42 @@
+@use '@/styles/core' as *;
+
 .DownloadController {
   margin-block: 3rem 4rem;
   display: flex;
   position: relative;
+  gap: 1rem;
+}
+
+.select {
+  flex: 1;
+
+  & > button {
+    width: 100%;
+  }
+}
+
+.button {
+  padding: 0.25rem fluid(1rem, 2rem);
 }
 
 .ul {
-  background-color: red;
+  background-color: lighten($black, 25);
   position: absolute;
   top: 100%;
+  inset-inline: 0;
+  max-height: 25rem;
+  overflow-x: auto;
+  padding: fluid(0.75rem, 1rem) fluid(1rem, 2rem);
+
+  & > div:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    // margin-bottom: 0.25rem;
+  }
+
+  li {
+    margin-left: 1.25rem;
+  }
 }

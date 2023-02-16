@@ -1,10 +1,13 @@
-'use client'
-
 import useActiveState from '@/utils/useActiveState'
 import { memo, useMemo } from 'react'
 import css from './DownloadController.module.scss'
 
-const DownloadController = ({ formats }) => {
+const DownloadController = ({
+  formats,
+  selectedFormat,
+  setSelectedFormat,
+  onDownload,
+}) => {
   const [isActive, setIsActive, ref] = useActiveState() as any
 
   const list = useMemo(() => {
@@ -12,12 +15,20 @@ const DownloadController = ({ formats }) => {
       const formatsNote = formats[key]
 
       return (
-        <>
-          <h4 key={key}>{key}</h4>
-          {formatsNote.map((str) => (
-            <li key={str}>{str.replace('&', ' FPS:')}</li>
-          ))}
-        </>
+        <div key={key}>
+          <h4>{key}</h4>
+          {formatsNote.map((str) => {
+            const handleClick = () => {
+              setSelectedFormat([key, str])
+            }
+
+            return (
+              <li key={str}>
+                <button onClick={handleClick}>{str}</button>
+              </li>
+            )
+          })}
+        </div>
       )
     })
 
@@ -27,11 +38,19 @@ const DownloadController = ({ formats }) => {
   return (
     <div className={css.DownloadController}>
       <div className={css.select} ref={ref}>
-        <button onClick={() => setIsActive()}>Show</button>
+        <button
+          className={css.button}
+          onClick={() => setIsActive()}
+          disabled={Object.keys(formats).length === 0}
+        >
+          {(selectedFormat[0] && selectedFormat.join(' ')) || 'Show'}
+        </button>
         {isActive && list}
       </div>
 
-      <button type="button">Download</button>
+      <button className={css.button} type="button" onClick={onDownload}>
+        Download
+      </button>
     </div>
   )
 }
